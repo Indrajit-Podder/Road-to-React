@@ -1,35 +1,65 @@
 import React from "react";
 import "./App.css";
 
-// const welcome = {
-//   greeting: "Hey",
-//   title: "React",
-// };
-
-function getTitle(title) {
-  return title;
-}
+const list = [
+  {
+    title: "React",
+    ulr: "https://reactjs.org",
+    author: "Indrajit Podder",
+    num_comments: 3,
+    points: 4,
+    objectId: 0,
+  },
+  {
+    title: "Redux",
+    ulr: "https://redux.js.org",
+    author: "Abhijit Podder",
+    num_comments: 2,
+    points: 5,
+    objectId: 1,
+  },
+];
 
 function App() {
   return (
     <>
       <div>
-        <h1>
-          {/* {welcome.greeting},{welcome.title}!
-           */}
-          Hello,{getTitle("React")}
-        </h1>
-        <label htmlFor="search">Search: </label>
-        <input id="search" type="text" />
+        <h1>My stories</h1>
+        <Search />
+
+        <hr />
+
+        <List />
       </div>
     </>
   );
 }
-const num = [1, 2, 3, 4];
+function Search() {
+  return (
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+    </div>
+  );
+}
 
-const exponentialNum = num.map(function (num) {
-  return num * num;
-});
-console.log(exponentialNum);
+function List() {
+  return (
+    <ul>
+      {list.map(function (item) {
+        return (
+          <li key={item.objectId}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 export default App;
